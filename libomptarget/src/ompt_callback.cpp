@@ -205,10 +205,10 @@ void OmptInterface::target_submit() {
 		(ompt_target_region_id, ompt_target_region_opid, 0));
 }
 
-void OmptInterface::target_enter_data(int64_t device_id) {
+void OmptInterface::target_enter_data(int64_t device_id, ompt_scope_endpoint_t scope) {
   OMPT_CALLBACK(ompt_callback_target_fn, 
     (ompt_target_enter_data, 
-     ompt_scope_begin,
+     scope,
      device_id,
      ompt_get_task_data_fn(), 
      ompt_target_region_id, 
@@ -216,10 +216,10 @@ void OmptInterface::target_enter_data(int64_t device_id) {
     )); 
 }
 
-void OmptInterface::target_exit_data(int64_t device_id) {
+void OmptInterface::target_exit_data(int64_t device_id, ompt_scope_endpoint_t scope) {
   OMPT_CALLBACK(ompt_callback_target_fn, 
     (ompt_target_exit_data, 
-     ompt_scope_begin,
+     scope,
      device_id,
      ompt_get_task_data_fn(), 
      ompt_target_region_id, 
@@ -227,10 +227,10 @@ void OmptInterface::target_exit_data(int64_t device_id) {
     )); 
 }
 
-void OmptInterface::target_update(int64_t device_id) {
+void OmptInterface::target_update(int64_t device_id, ompt_scope_endpoint_t scope) {
   OMPT_CALLBACK(ompt_callback_target_fn, 
     (ompt_target_update, 
-     ompt_scope_begin,
+     scope,
      device_id,
      ompt_get_task_data_fn(), 
      ompt_target_region_id, 
@@ -238,10 +238,10 @@ void OmptInterface::target_update(int64_t device_id) {
     )); 
 }
 
-void OmptInterface::target(int64_t device_id) {
+void OmptInterface::target(int64_t device_id, ompt_scope_endpoint_t scope) {
   OMPT_CALLBACK(ompt_callback_target_fn, 
 	  (ompt_target, 
-	   ompt_scope_begin,
+	   scope,
 	   device_id,
 	   ompt_get_task_data_fn(), 
 	   ompt_target_region_id, 

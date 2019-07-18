@@ -48,13 +48,13 @@ struct OmptInterface {
   void target_submit();
 
   // target region callbacks
-  void target_enter_data(int64_t device_id);
+  void target_enter_data(int64_t device_id, ompt_scope_endpoint_t scope = ompt_scope_begin);
 
-  void target_exit_data(int64_t device_id);
+  void target_exit_data(int64_t device_id, ompt_scope_endpoint_t scope = ompt_scope_begin);
 
-  void target_update(int64_t device_id);
+  void target_update(int64_t device_id, ompt_scope_endpoint_t scope = ompt_scope_begin);
 
-  void target(int64_t device_id);
+  void target(int64_t device_id, ompt_scope_endpoint_t scope = ompt_scope_begin);
 
   // begin/end target region marks
   uint64_t target_region_begin();
