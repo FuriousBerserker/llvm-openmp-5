@@ -16,6 +16,7 @@
 #include "device.h"
 #include "private.h"
 #include "rtl.h"
+#include "ompt_callback.h"
 
 #include <cassert>
 #include <vector>
@@ -133,6 +134,7 @@ static int InitLibrary(DeviceTy& Device) {
         DP("Add mapping from host " DPxMOD " to device " DPxMOD " with size %zu"
             "\n", DPxPTR(CurrHostEntry->addr), DPxPTR(CurrDeviceEntry->addr),
             CurrDeviceEntry->size);
+        ompt_interface.target_data_associate(device_id, CurrDeviceEntry->addr, CurrHostEntry->addr, CurrDeviceEntry->size);
         Device.HostDataToTargetMap.push_front(HostDataToTargetTy(
             (uintptr_t)CurrHostEntry->addr /*HstPtrBase*/,
             (uintptr_t)CurrHostEntry->addr /*HstPtrBegin*/,

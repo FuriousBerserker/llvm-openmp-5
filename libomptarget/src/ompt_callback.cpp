@@ -200,6 +200,13 @@ void OmptInterface::target_data_retrieve(int64_t device_id, void *hst_ptr_begin,
      tgt_ptr_begin, device_id, hst_ptr_begin, 0, size, _codeptr_ra));
 } 
 
+void OmptInterface::target_data_associate(int64_t device_id, void *tgt_ptr_begin,
+  void *hst_ptr_begin, size_t size) {
+  OMPT_CALLBACK(ompt_callback_target_data_op_fn, 
+    (ompt_target_region_id, ompt_target_region_opid, ompt_target_data_associate,
+     hst_ptr_begin, 0, tgt_ptr_begin, device_id, size, _codeptr_ra));
+}
+
 void OmptInterface::target_submit() {
   OMPT_CALLBACK(ompt_callback_target_submit_fn, 
 		(ompt_target_region_id, ompt_target_region_opid, 0));
